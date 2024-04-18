@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native'; // Removed unused imports
+import { View, StyleSheet, StatusBar } from 'react-native'; // Removed unused imports
 import SquareWithImageBackground from './SquareWithImageBackground'; // Fixed import path
 
 const Home = ({ navigation }) => {
@@ -9,18 +9,53 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-
-            <View style={styles.content}>
-                <View style={styles.row}>
-                    {/* Render your custom component here */}
-                    <SquareWithImageBackground
-                        id="Temperature Log"
-                        title="27°"
-                        imageUrl={require('../assets/splash.png')}
-                        color="#E5B9FA"
-                        fontSize={45}
-                    />
-                </View>
+            <View style={styles.row}>
+                <SquareWithImageBackground
+                    id="AboutMe"
+                    title="About Me"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
+                <SquareWithImageBackground
+                    id="Education"
+                    title="Education"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
+            </View>
+            <View style={styles.row}>
+                <SquareWithImageBackground
+                    id="Projects"
+                    title="Projects"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
+                <SquareWithImageBackground
+                    id="Experience"
+                    title="Work Experience"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
+            </View>
+            <View style={styles.row}>
+                <SquareWithImageBackground
+                    id="Square5"
+                    title="Square 5"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
+                <SquareWithImageBackground
+                    id="Square6"
+                    title="Square 6"
+                    imageUrl={require('../assets/splash.png')}
+                    color="#E5B9FA"
+                    fontSize={45}
+                />
             </View>
             {/* StatusBar component should be placed outside the main container */}
             <StatusBar style="auto" />
@@ -31,21 +66,19 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         padding: 16,
     },
     content: {
-        flex: 1, // Added flex: 1 to make the content fill the container
-        justifyContent: 'center',
+        flex: 1,
         alignItems: 'center',
-    },
+        justifyContent: 'center',
+      },
     row: {
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'space-between', 
+        marginBottom: 6, 
     },
-    // Removed unused styles
 });
 
 export default Home;
