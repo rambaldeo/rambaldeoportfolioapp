@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 const SquareWithImageBackground = ({id, title, imageUrl, color, fontSize }) => {
   const navigation = useNavigation();
 
-//   const handlePress = () => {
-//     if (id === "Medication") {
-//       navigation.navigate('Medications');
-//     }
+  const handlePress = () => {
+    if (id === "Medication") {
+      //navigation.navigate('Medications');
+    }
    
-//   };
+  };
 
   return (
     <TouchableOpacity onPress={handlePress}>

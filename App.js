@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import {NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack'; // Added import for createStackNavigator
+import Home from './Components/Home'
 
 
-const Stack = createStackNavigatior();
+const Stack = createStackNavigator(); // Fixed typo in createStackNavigator
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-
+      <Stack.Navigator>
+        <Stack.Screen name ="HomePage" component={Home}/>
       </Stack.Navigator>
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
