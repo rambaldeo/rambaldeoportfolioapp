@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "663c94d7-96e5-45ac-8901-c674468d181e"
+      }
+    },
+    "owner": "rambaldeo"
   }
 }
