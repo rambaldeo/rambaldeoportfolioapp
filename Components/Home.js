@@ -1,23 +1,60 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, StatusBar, ImageBackground} from 'react-native';
-import MenuDropDown from './MenuDropDown';
+import React from 'react';
+import { View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import SquareWithImageBackground from './SquareWithImageBackground';
 
 const Home = () => {
-    <StatusBar style="auto" />
     return (
-        <View style={styles.container}>
-            <MenuDropDown />
-        </View>
+        <LinearGradient colors={['#4ADEDE', '#2A4EDD']} style={styles.gradient}>
+            <StatusBar style="auto" />
+            <ScrollView style={styles.optiosn}>
+                <View style={styles.container}>
+                    <View style={styles.row}>
+                        <SquareWithImageBackground 
+                            id="About me"
+                            title="About"
+                        />
+                        <SquareWithImageBackground 
+                            id="Experience"
+                            title="Experience"
+                        />
+                    </View>
+
+                    <View style={styles.row}>
+                        <SquareWithImageBackground 
+                            id="Education"
+                            title="Education"
+                        />
+                        <SquareWithImageBackground 
+                            id="Projects"
+                            title="Projects"
+                        />
+                    </View>
+                </View>
+            </ScrollView>
+        </LinearGradient>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    gradient: {
         flex: 1,
-        position: 'relative',
-        backgroundColor: "rgba(128, 0, 128, 0.5)",
+        zIndex: -1,
     },
-
+    options: {
+        width: '80%',
+        
+    },
+    container: {
+        marginTop: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
 });
 
 export default Home;
+

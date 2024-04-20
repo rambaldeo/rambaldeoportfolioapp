@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const SquareWithImageBackground = ({id, title, imageUrl, color, fontSize }) => {
+const SquareWithImageBackground = ({id, title }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
@@ -14,12 +14,9 @@ const SquareWithImageBackground = ({id, title, imageUrl, color, fontSize }) => {
 
   return (
     <TouchableOpacity onPress={handlePress}>
-      <View style={[styles.container, { backgroundColor: color }]}>
-        <ImageBackground source={imageUrl} style={styles.imageBackground}>
-
-        </ImageBackground>
+      <View style={[styles.container, { backgroundColor: '#AEBAF8' }]}>
         <View style={styles.titleContainer}>
-          <Text style={[styles.title, { fontSize: fontSize }]}>{title}</Text>
+          <Text style={[styles.title, { fontSize: 20 }]}>{title}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -30,20 +27,10 @@ const styles = StyleSheet.create({
   container: {
     width: 150,
     height: 120,
-    borderRadius: 10,
+    borderRadius: 30,
     overflow: 'hidden',
-    margin: 20,
-    elevation: 4, // Add shadow
-  },
-  imageBackground: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    opacity: 0.1, // Adjust the opacity of the image
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 5,
-    marginLeft: 5,
+    margin: 15,
+    elevation: 10, 
   },
   titleContainer: {
     position: 'absolute',
@@ -54,7 +41,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'black',
-    opacity: 1, // Make the title text fully opaque
+    opacity: 1, 
   },
 });
 

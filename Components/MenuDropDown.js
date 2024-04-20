@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        backgroundColor: "rgba(0, 0, 255, 0.5)",
     },
     menuIcon: {
         margin: 10, 
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
     menuOptions: {
         padding: 5,
         flexDirection: 'column',
-        alignItems: 'left'
+        alignItems: 'left',
+        backgroundColor: "rgba(0, 0, 255, 0.5)",
     },
 });
