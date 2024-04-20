@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, ImageBackground } from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack'; // Added import for createStackNavigator
+import { createStackNavigator } from '@react-navigation/stack'; 
 import Home from './Components/Home'
 
-
-const Stack = createStackNavigator(); // Fixed typo in createStackNavigator
+const background_Image = './assets/Gradient_BackGroud.jpg';
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
