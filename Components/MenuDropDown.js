@@ -1,15 +1,16 @@
 import { StyleSheet, View } from 'react-native';
-import React from 'react';
+import React, { useRef } from 'react';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-
 const MenuDropDown = () => {
     const navigation = useNavigation();
+    const containerRef = useRef(null);
+
     return (
         <MenuProvider>
-            <View style={styles.container}>
+            <View style={[styles.container, { height: containerRef.current?.clientHeight || 'auto' }]} ref={containerRef}>
                 <Menu>
                     <MenuTrigger>
                         <Icon name="menu" size={40} color="black" style={styles.menuIcon} />
@@ -29,11 +30,10 @@ export default MenuDropDown;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         width: "100%",
-        backgroundColor: '#fff',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
+        backgroundColor: "rgba(0, 0, 255, 0.5)",
     },
     menuIcon: {
         margin: 10, 

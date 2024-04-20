@@ -1,12 +1,10 @@
-import { StatusBar, ImageBackground } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, ImageaBackGround, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'; 
 import Home from './Components/Home'
 
-const background_Image = './assets/Gradient_BackGroud.jpg';
 const Stack = createStackNavigator();
-
 export default function App() {
   return (
     <NavigationContainer>
@@ -19,10 +17,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 });
