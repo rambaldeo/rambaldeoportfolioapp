@@ -31,6 +31,13 @@ const Home = () => {
                             title="Projects"
                         />
                     </View>
+
+                    <View style={styles.row}>
+                        <SquareWithImageBackground 
+                                id="Contact Info"
+                                title="Contact"
+                            />
+                    </View>
                 </View>
             </ScrollView>
         </LinearGradient>
