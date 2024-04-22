@@ -12,7 +12,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name ="Home" component={Home} options={{
           title: "HOMEPAGE",
-          headerStyle: {backgroundColor: '#4ADEDE'},
+          headerStyle: {backgroundColor: '#2A4EDD'},
           headerTitleStyle: { fontWeight: 'bold'},
           headerTintColor: '#fff'
           }}/>
