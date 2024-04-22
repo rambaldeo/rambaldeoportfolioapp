@@ -5,7 +5,7 @@ import SquareWithImageBackground from './SquareWithImageBackground';
 
 const Home = () => {
     return (
-        <LinearGradient colors={['#4ADEDE', '#2A4EDD']} style={styles.gradient}>
+        <LinearGradient colors={[ '#2A4EDD','#4ADEDE', '#2A4EDD']} style={styles.gradient}>
             <StatusBar style="auto" />
             <ScrollView style={styles.optiosn}>
                 <View style={styles.container}>
