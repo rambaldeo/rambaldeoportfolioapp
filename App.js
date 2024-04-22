@@ -10,7 +10,12 @@ export default function App() {
     
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name ="Home" component={Home}/>
+        <Stack.Screen name ="Home" component={Home} options={{
+          title: "HOMEPAGE",
+          headerStyle: {backgroundColor: '#4ADEDE'},
+          headerTitleStyle: { fontWeight: 'bold'},
+          headerTintColor: '#fff'
+          }}/>
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
