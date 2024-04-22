@@ -16,6 +16,7 @@ export default function App() {
           headerTitleStyle: { fontWeight: 'bold'},
           headerTintColor: '#fff'
           }}/>
+          
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
