@@ -2,13 +2,14 @@ import React from 'react';
 import { View, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import SquareWithImageBackground from './SquareWithImageBackground';
-
+import Profile from './Profile';
 const Home = () => {
     return (
         <LinearGradient colors={[ '#2A4EDD','#4ADEDE', '#2A4EDD']} style={styles.gradient}>
             <StatusBar style="auto" />
             <ScrollView style={styles.optiosn}>
                 <View style={styles.container}>
+                    <Profile/>
                     <View style={styles.row}>
                         <SquareWithImageBackground 
                             id="About me"
