@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import ImageResizer from 'react-native-image-resizer';
 
 const Profile = () => {
     const [isImageEnlarged, setIsImageEnlarged] = useState(false);
@@ -11,15 +10,15 @@ const Profile = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.row}>
-                <TouchableOpacity onPress={toggleImageSize} style={styles.imageContainer}>
-                    <Image style={[styles.profilePicture, isImageEnlarged && styles.enlargedProfilePicture]} source={require('../assets/Ram_Baldeo.jpg')} />
+        <View style={profileStyles.container}>
+            <View style={profileStyles.row}>
+                <TouchableOpacity onPress={toggleImageSize} style={profileStyles.imageContainer}>
+                    <Image style={[profileStyles.profilePicture, isImageEnlarged && profileStyles.enlargedProfilePicture]} source={require('../assets/Ram_Baldeo.jpg')} />
                 </TouchableOpacity>
-                <View style={styles.textContainer}>
+                <View style={profileStyles.textContainer}>
                     {/* Time to add in a section to display my name, dob or age, and a little summary about myself */}
-                    <Text style={styles.title}>Ram Baldeo</Text>
-                    <Text style={styles.bio}>Software engineering graduate from ontario tech universtiy with ioT specalization </Text>
+                    <Text style={profileStyles.title}>Ram Baldeo</Text>
+                    <Text style={profileStyles.bio}>Software engineering graduate from ontario tech universtiy with ioT specalization </Text>
                 </View>
             </View>
         </View>
@@ -28,7 +27,7 @@ const Profile = () => {
 
 export default Profile;
 
-const styles = StyleSheet.create({
+const profileStyles = StyleSheet.create({
     container: {
         width: "100%",
         height: '30%',
@@ -61,10 +60,9 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: 'right',
-        fontSize: 34,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'white',
-        textTransform: 'uppercase',
         textDecorationLine: 'underline',
         fontStyle: 'italic',
         marginBottom: 15,
