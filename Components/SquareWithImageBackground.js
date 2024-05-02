@@ -6,8 +6,8 @@ const SquareWithImageBackground = ({id, title }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    if (id === "Medication") {
-      //navigation.navigate('Medications');
+    if (id === "Contact") {
+      navigation.navigate('Contact');
     }
    
   };

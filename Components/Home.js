@@ -7,13 +7,13 @@ const Home = () => {
     return (
         <LinearGradient colors={[ '#2A4EDD','#4ADEDE', '#2A4EDD']} style={styles.gradient}>
             <StatusBar style="auto" />
-            <ScrollView style={styles.optiosn}>
+            <ScrollView style={styles.options}>
                 <View style={styles.container}>
                     <Profile/>
                     <View style={styles.row}>
                         <SquareWithImageBackground 
-                            id="About me"
-                            title="About"
+                            id="About"
+                            title="About Me"
                         />
                         <SquareWithImageBackground 
                             id="Experience"
@@ -34,8 +34,8 @@ const Home = () => {
 
                     <View style={styles.row}>
                         <SquareWithImageBackground 
-                                id="Contact Info"
-                                title="Contact"
+                                id="Contact"
+                                title="Contact Info"
                             />
                     </View>
                 </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         zIndex: -1,
     },
     options: {
-        width: '80%',
+        width: '100%',
         
     },
     container: {
