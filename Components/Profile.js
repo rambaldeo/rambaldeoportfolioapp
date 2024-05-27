@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Profile = () => {
     const [isImageEnlarged, setIsImageEnlarged] = useState(false);
@@ -10,18 +11,21 @@ const Profile = () => {
     };
 
     return (
-        <View style={profileStyles.container}>
-            <View style={profileStyles.row}>
-                <TouchableOpacity onPress={toggleImageSize} style={profileStyles.imageContainer}>
-                    <Image style={[profileStyles.profilePicture, isImageEnlarged && profileStyles.enlargedProfilePicture]} source={require('../assets/Ram_Baldeo.jpg')} />
-                </TouchableOpacity>
-                <View style={profileStyles.textContainer}>
-                    {/* Time to add in a section to display my name, dob or age, and a little summary about myself */}
-                    <Text style={profileStyles.title}>Ram Baldeo</Text>
-                    <Text style={profileStyles.bio}>Software engineering graduate from ontario tech universtiy with ioT specalization </Text>
+        <LinearGradient colors={[ '#2A4EDD','#4ADEDE', '#2A4EDD']} style={profileStyles.gradient}>
+            <View style={profileStyles.container}>
+                <View style={profileStyles.row}>
+                    <TouchableOpacity onPress={toggleImageSize} style={profileStyles.imageContainer}>
+                        <Image style={[profileStyles.profilePicture, isImageEnlarged && profileStyles.enlargedProfilePicture]} source={require('../assets/Ram_Baldeo.jpg')} />
+                    </TouchableOpacity>
+                    <View style={profileStyles.textContainer}>
+                        {/* Time to add in a section to display my name, dob or age, and a little summary about myself */}
+                        <Text style={profileStyles.title}>Ram Baldeo</Text>
+                        <Text style={profileStyles.bio}>Software engineering graduate from ontario tech universtiy with ioT specalization </Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </LinearGradient>
+        
     );
 };
 
@@ -34,6 +38,10 @@ const profileStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 40,
+    },
+    gradient: {
+        flex: 1,
+        zIndex: -1,
     },
     row: {
         flexDirection: 'row',

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'; 
 import Home from './Components/Home'
 import ContactPage from './Components/ContactPage';
+import Profile from './Components/Profile';
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -22,6 +23,12 @@ export default function App() {
           headerTitleStyle: { fontWeight: 'bold'},
           headerTintColor: '#fff'}}
         />  
+        <Stack.Screen name="AboutMe" component={Profile} options={{
+          title: "About Me",
+          headerStyle: {backgroundColor: '#2A4EDD'},
+          headerTitleStyle: { fontWeight: 'bold'},
+          headerTintColor: '#fff'
+        }}/>
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
