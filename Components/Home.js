@@ -9,7 +9,6 @@ const Home = () => {
             <StatusBar style="auto" />
             <ScrollView style={styles.options}>
                 <View style={styles.container}>
-                    <Profile/>
                     <View style={styles.row}>
                         <SquareWithImageBackground 
                             id="About"

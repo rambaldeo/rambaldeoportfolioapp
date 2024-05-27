@@ -9,6 +9,9 @@ const SquareWithImageBackground = ({id, title }) => {
     if (id === "Contact") {
       navigation.navigate('Contact');
     }
+    if (id==='About'){
+      navigation.navigate('AboutMe');
+    }
    
   };
 
