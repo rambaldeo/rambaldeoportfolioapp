@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'; 
 import Home from './Components/Home'
 import ContactPage from './Components/ContactPage';
 import Profile from './Components/Profile';
 import LoginPage from './Components/LoginPage';
+import Signup from './Components/SignUp';
+
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -40,6 +42,12 @@ export default function App() {
           headerStyle: {backgroundColor: '#2A4EDD'},
           headerTitleStyle: { fontWeight: 'bold'},
           headerTintColor: '#fff',
+        }}/>
+        <Stack.Screen name="Signup" component={Signup} options={{
+          headerTitle: () => null,
+          headerStyle: {backgroundColor: '#4ADEDE'},
+          headerTitleStyle: { fontWeight: 'bold'},
+          headerTintColor: 'black',
         }}/>
       </Stack.Navigator>
       <StatusBar style="auto" />
