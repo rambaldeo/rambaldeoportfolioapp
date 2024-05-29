@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Button, TextInput } from "react-native";
+import { StyleSheet, View, Button, TextInput, TouchableWithoutFeedback, Keyboard, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,11 +13,11 @@ const LoginPage = () => {
         navigation.navigate('Home')
     };
     return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <LinearGradient colors={['#2A4EDD', '#4ADEDE', '#2A4EDD']} style={LoginStyle.gradient}>
             <View style={LoginStyle.container}>
-                
-                {/* Need to add a App logo at the top here
-                Thinking about putting the text input into another container with a different width */}
+            <Image style={LoginStyle.appLogo} source={require('../assets/Ram_Baldeo.jpg')} />
+                {/* Replace with actual App Logo */}
                 <TextInput
                     style={LoginStyle.input}
                     label="Email"
@@ -54,6 +54,7 @@ const LoginPage = () => {
                 </View>
             </View>
         </LinearGradient>
+        </TouchableWithoutFeedback>
     );
 };
 
@@ -68,6 +69,7 @@ const LoginStyle = StyleSheet.create({
     container: {
         width: '80%',
         alignItems: 'center',
+        height: '90%'
     },
     input: {
         height: 45,
@@ -89,4 +91,10 @@ const LoginStyle = StyleSheet.create({
         flex: 1,
         marginHorizontal: 5,
     },
+    appLogo: {
+        transform: [{ scale: 1 }], 
+        width: '70%',
+        height: '30%',
+        marginBottom: 100
+    }
 });

@@ -9,7 +9,6 @@ import LoginPage from './Components/LoginPage';
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name ="Home" component={Home} options={{
@@ -37,7 +36,7 @@ export default function App() {
           headerTintColor: '#fff'
         }}/>
         <Stack.Screen name="Login" component={LoginPage} options={{
-          title: "Login",
+          title: "Welcome",
           headerStyle: {backgroundColor: '#2A4EDD'},
           headerTitleStyle: { fontWeight: 'bold'},
           headerTintColor: '#fff',
