@@ -12,6 +12,9 @@ const LoginPage = () => {
     const handleLogin = async () => {
         navigation.navigate('Home')
     };
+    const handleSignUp = async () => {
+        navigation.navigate('Signup')
+    }
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <LinearGradient colors={['#2A4EDD', '#4ADEDE', '#2A4EDD']} style={LoginStyle.gradient}>
@@ -46,7 +49,7 @@ const LoginPage = () => {
                     </View>
                     <View style={LoginStyle.button}>
                         <Button
-                           // onPress={handleLogin}
+                            onPress={handleSignUp}
                             title="Signup"
                             color="black"
                         />
