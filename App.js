@@ -2,13 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'; 
-import { Button } from 'react-native';
 import Home from './Components/Home';
 import ContactPage from './Components/ContactPage';
 import Profile from './Components/Profile';
 import LoginPage from './Components/LoginPage';
 import Signup from './Components/SignUp';
 import SettingButton from './Components/SettingsButton';
+import Education from './Components/Education';
 
 const Stack = createStackNavigator();
 
@@ -62,6 +62,16 @@ export default function App() {
               <SettingButton color="black"/>
             ),
           })} 
+        />
+         <Stack.Screen name="Education" component={Education} options={( { navigation} ) => ({
+          title: "Education",
+          headerStyle: { backgroundColor: '#2A4EDD' },
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <SettingButton color="white"/>
+          ),
+        })}
         />
       </Stack.Navigator>
       <StatusBar style="auto" />

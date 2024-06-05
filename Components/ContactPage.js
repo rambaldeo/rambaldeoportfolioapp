@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, ScrollView, Text, View, TouchableOpacity, Linking } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SocialIcon } from 'react-native-elements';
-
+//Need to update this page
 const ContactPage = () => {
     return (
         <LinearGradient colors={['#2A4EDD', '#4ADEDE', '#2A4EDD']} style={contactStyles.gradient}>

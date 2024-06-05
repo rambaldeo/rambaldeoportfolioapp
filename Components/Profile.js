@@ -24,6 +24,11 @@ const Profile = () => {
                     </View>
                 </View>
             </View>
+            <View>
+                <Text>
+                    This is another test
+                </Text>
+            </View>
         </LinearGradient>
         
     );
