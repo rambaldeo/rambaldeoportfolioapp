@@ -7,6 +7,10 @@ const FourthYear = ({ item, close }) => {
             <ScrollView contentContainerStyle={styles.animatedViewScrollContent}>
                 <Image source={item.source} style={styles.scrollImage} />
                 <Text style={styles.additionalText}>Details for FourthYear</Text>
+                <Image source={item.source} style={styles.scrollImage} />
+                <Image source={item.source} style={styles.scrollImage} />
+                <Image source={item.source} style={styles.scrollImage} />
+                <Image source={item.source} style={styles.scrollImage} />
                 <TouchableOpacity onPress={close} style={styles.closeButton}>
                     <Text style={styles.closeButtonText}>Close</Text>
                 </TouchableOpacity>
@@ -18,13 +22,17 @@ const FourthYear = ({ item, close }) => {
 const styles = StyleSheet.create({
     animatedViewContainer: {
         width: '90%',
-        height: '60%',
-        backgroundColor: 'white',
+        height: '70%',
+        backgroundColor: '#4ADEDE',
         borderRadius: 10,
         padding: 20,
+        marginBottom: 15,
+        marginTop: 15,  
+        marginBottom: 15,  
     },
     animatedViewScrollContent: {
         paddingBottom: 20,
+        marginBottom: 15,
     },
     scrollImage: {
         width: '100%',

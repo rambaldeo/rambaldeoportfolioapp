@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView, Animated, Dimensions } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image, ScrollView, Animated, Dimensions } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import LifeAnimatedView from "./AnimatedViews/LifeAnimatedView";
 import FirstYearAnimatedView from "./AnimatedViews/FirstYearAnimatedView";
@@ -20,8 +20,8 @@ const Education = () => {
     const [animatedViewContent, setAnimatedViewContent] = useState(null);
     const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
 
-    const handleCardPress = async (item) => {
-        const { component: Component} = item;
+    const handleCardPress = (item) => {
+        const { component: Component } = item;
         setAnimatedViewContent({ Component, item });
         setIsAnimatedViewVisible(true);
         Animated.timing(slideAnim, {
@@ -54,7 +54,9 @@ const Education = () => {
                 <View style={styles.yearContainer}>
                     {educationData.map((item, index) => (
                         <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
-                            <YearCardsStructure index={index} item={item} />
+                            <View style={styles.card}>
+                                <Image style={styles.image} resizeMode="contain" source={item.source} />
+                            </View>
                         </TouchableOpacity>
                     ))}
                 </View>
@@ -66,22 +68,6 @@ const Education = () => {
                 )}
             </ScrollView>
         </LinearGradient>
-    );
-};
-
-const YearCardsStructure = ({ index, item }) => {
-    return (
-        <View style={styles.card}>
-            <ImageWrapper style={styles.enlargedProfilePicture} source={item.source} />
-        </View>
-    );
-};
-
-const ImageWrapper = ({ style, source }) => {
-    return (
-        <View style={[style, styles.imageContainer]}>
-            <Image style={styles.image} resizeMode="contain" source={source} />
-        </View>
     );
 };
 
@@ -126,7 +112,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOpacity: 0.2,
         shadowOffset: { width: 0, height: 2 },
-        marginVertical: 10,
+        marginVertical: 5, // Adjusted margin
         paddingHorizontal: 10,
     },
     yearContainer: {
