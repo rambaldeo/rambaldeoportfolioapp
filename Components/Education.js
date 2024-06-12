@@ -1,22 +1,28 @@
 import React, { useState, useRef } from "react";
 import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView, Animated, Dimensions } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import LifeAnimatedView from "./AnimatedViews/LifeAnimatedView";
+import FirstYearAnimatedView from "./AnimatedViews/FirstYearAnimatedView";
+import SecondYear from "./AnimatedViews/SecondYear";
+import ThirdYear from "./AnimatedViews/ThirdYear";
+import FourthYear from "./AnimatedViews/FourthYear";
 
 const educationData = [
-    { type: 'image', source: require('../assets/IMG_0008.jpg') },
-    { type: 'image', source: require('../assets/IMG_0006.jpg') },
-    { type: 'image', source: require('../assets/IMG_0009.jpg') },
-    { type: 'image', source: require('../assets/IMG_0010.jpg') },
-    { type: 'image', source: require('../assets/IMG_0011.jpg') },
+    { type: 'LifeOnCampus', source: require('../assets/IMG_0008.jpg'), component: LifeAnimatedView },
+    { type: 'FirstYear', source: require('../assets/IMG_0006.jpg'), component: FirstYearAnimatedView },
+    { type: 'SecondYear', source: require('../assets/IMG_0009.jpg'), component: SecondYear },
+    { type: 'ThirdYear', source: require('../assets/IMG_0010.jpg'), component: ThirdYear },
+    { type: 'FourthYear', source: require('../assets/IMG_0011.jpg'), component: FourthYear },
 ];
 
 const Education = () => {
     const [isAnimatedViewVisible, setIsAnimatedViewVisible] = useState(false);
-    const [animatedViewContent, setAnimatedViewContent] = useState('');
+    const [animatedViewContent, setAnimatedViewContent] = useState(null);
     const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
 
-    const handleCardPress = (message) => {
-        setAnimatedViewContent(message);
+    const handleCardPress = async (item) => {
+        const { component: Component} = item;
+        setAnimatedViewContent({ Component, item });
         setIsAnimatedViewVisible(true);
         Animated.timing(slideAnim, {
             toValue: 0,
@@ -32,6 +38,7 @@ const Education = () => {
             useNativeDriver: true,
         }).start(() => {
             setIsAnimatedViewVisible(false);
+            setAnimatedViewContent(null);
         });
     };
 
@@ -46,30 +53,15 @@ const Education = () => {
 
                 <View style={styles.yearContainer}>
                     {educationData.map((item, index) => (
-                        <TouchableOpacity key={index} onPress={() => handleCardPress(item.title || 'Image')}>
+                        <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
                             <YearCardsStructure index={index} item={item} />
                         </TouchableOpacity>
                     ))}
                 </View>
-                
-                {isAnimatedViewVisible && (
+
+                {isAnimatedViewVisible && animatedViewContent && (
                     <Animated.View style={[styles.animatedView, { transform: [{ translateY: slideAnim }] }]}>
-                        <View style={styles.animatedViewContainer}>
-                            <ScrollView contentContainerStyle={styles.animatedViewScrollContent}>
-                                <Image source={require('../assets/IMG_0008.jpg')} style={styles.scrollImage} />
-
-                                <Text style={styles.additionalText}>
-                                    Here you can add more details about the selected item. This content can be long and it will be scrollable inside this view.
-                                </Text>
-
-                                <Image source={require('../assets/IMG_0008.jpg')} style={styles.scrollImage} />
-                                <Image source={require('../assets/IMG_0008.jpg')} style={styles.scrollImage} />
-                                
-                                <TouchableOpacity onPress={closeAnimatedView} style={styles.closeButton}>
-                                    <Text style={styles.closeButtonText}>Close</Text>
-                                </TouchableOpacity>
-                            </ScrollView>
-                        </View>
+                        <animatedViewContent.Component item={animatedViewContent.item} close={closeAnimatedView} />
                     </Animated.View>
                 )}
             </ScrollView>
@@ -79,7 +71,7 @@ const Education = () => {
 
 const YearCardsStructure = ({ index, item }) => {
     return (
-        <View style={[styles.card]}>
+        <View style={styles.card}>
             <ImageWrapper style={styles.enlargedProfilePicture} source={item.source} />
         </View>
     );
@@ -130,10 +122,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 120,
         borderRadius: 10,
-        elevation: 3, // For Android
-        shadowColor: '#000', // For iOS
-        shadowOpacity: 0.2, // For iOS
-        shadowOffset: { width: 0, height: 2 }, // For iOS
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 2 },
         marginVertical: 10,
         paddingHorizontal: 10,
     },
@@ -148,39 +140,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.8)',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    animatedViewContainer: {
-        width: '90%',
-        height: '60%', // Set the height to 80% of the screen
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 20,
-    },
-    animatedViewScrollContent: {
-        paddingBottom: 20, // Ensures the content is scrollable
-    },
-    scrollImage: {
-        width: '100%',
-        height: 200,
-        marginBottom: 15,
-    },
-    additionalText: {
-        marginBottom: 15,
-        textAlign: 'center',
-        fontSize: 16,
-    },
-    closeButton: {
-        marginTop: 15,
-        backgroundColor: 'darkorange',
-        borderRadius: 5,
-        padding: 10,
-        alignItems: 'center',
-        width: '50%',
-        
-    },
-    closeButtonText: {
-        color: 'white',
-        fontSize: 16,
     },
 });
 
