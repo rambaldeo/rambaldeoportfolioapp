@@ -2,13 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'; 
-import { Ionicons } from '@expo/vector-icons';
-import { Button } from 'react-native';
 import Home from './Components/Home';
 import ContactPage from './Components/ContactPage';
 import Profile from './Components/Profile';
 import LoginPage from './Components/LoginPage';
 import Signup from './Components/SignUp';
+import SettingButton from './Components/SettingsButton';
+import Education from './Components/Education';
 
 const Stack = createStackNavigator();
 
@@ -23,23 +23,29 @@ export default function App() {
             headerTintColor: '#fff',
             //headerLeft: () => null,
             headerRight: () => (
-              <Button onPress={() => alert('This is a button')} title="Settings" color="white" />
+              <SettingButton color="white"/>
             ),
           })} 
         />
-        <Stack.Screen name="Contact" component={ContactPage} options={{ 
-            title: "Contact",
-            headerStyle: { backgroundColor: '#2A4EDD' },
-            headerTitleStyle: { fontWeight: 'bold' },
-            headerTintColor: '#fff',
-          }} 
+        <Stack.Screen name="Contact" component={ContactPage} options={( { navigation} ) => ({
+          title: "Contact",
+          headerStyle: { backgroundColor: '#2A4EDD' },
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <SettingButton color="white"/>
+          ),
+        })}
         />
-        <Stack.Screen name="AboutMe" component={Profile} options={{ 
-            title: "About Me",
-            headerStyle: { backgroundColor: '#2A4EDD' },
-            headerTitleStyle: { fontWeight: 'bold' },
-            headerTintColor: '#fff',
-          }} 
+        <Stack.Screen name="AboutMe" component={Profile}  options={( { navigation} ) => ({
+          title: "About Me",
+          headerStyle: { backgroundColor: '#2A4EDD' },
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <SettingButton color="white"/>
+          ),
+        })}
         />
         <Stack.Screen name="Login" component={LoginPage} options={{ 
             title: "Welcome",
@@ -53,10 +59,19 @@ export default function App() {
             headerStyle: { backgroundColor: '#4ADEDE' },
             headerTintColor: 'black',
             headerRight: () => (
-              //need to create the settings page to logout
-              <Button onPress={() => alert('This is a button')} title="Settings" color="black" />
+              <SettingButton color="black"/>
             ),
           })} 
+        />
+         <Stack.Screen name="Education" component={Education} options={( { navigation} ) => ({
+          title: "Education",
+          headerStyle: { backgroundColor: '#2A4EDD' },
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <SettingButton color="white"/>
+          ),
+        })}
         />
       </Stack.Navigator>
       <StatusBar style="auto" />
