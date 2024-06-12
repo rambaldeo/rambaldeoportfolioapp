@@ -9,6 +9,7 @@ import LoginPage from './Components/LoginPage';
 import Signup from './Components/SignUp';
 import SettingButton from './Components/SettingsButton';
 import Education from './Components/Education';
+import Experience from './Components/Experience';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,16 @@ export default function App() {
         />
          <Stack.Screen name="Education" component={Education} options={( { navigation} ) => ({
           title: "Education",
+          headerStyle: { backgroundColor: '#2A4EDD' },
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <SettingButton color="white"/>
+          ),
+        })}
+        />
+        <Stack.Screen name="Experience" component={Experience}  options={( { navigation} ) => ({
+          title: "Professional Experience",
           headerStyle: { backgroundColor: '#2A4EDD' },
           headerTitleStyle: { fontWeight: 'bold' },
           headerTintColor: '#fff',
