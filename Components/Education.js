@@ -18,7 +18,7 @@ const educationData = [
 const Education = () => {
     const [isAnimatedViewVisible, setIsAnimatedViewVisible] = useState(false);
     const [animatedViewContent, setAnimatedViewContent] = useState(null);
-    const fadeAnim = useRef(new Animated.Value(0)).current; 
+    const fadeAnim = useRef(new Animated.Value(0)).current; // Start with opacity 0
 
     const handleCardPress = (item) => {
         const { component: Component } = item;
@@ -77,10 +77,10 @@ const styles = StyleSheet.create({
     },
     scrollViewContent: {
         flexGrow: 1,
-        alignItems: 'center', 
+        alignItems: 'center', // Center items horizontally
     },
     enlargedProfilePicture: {
-        width: '90%',
+        width: '80%',
         height: '90%',
         borderRadius: 10,
         overflow: 'hidden',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: 'white',
-        width: Dimensions.get('window').width * 0.9, 
+        width: Dimensions.get('window').width * 0.8, // Adjust the width dynamically
         height: 120,
         borderRadius: 10,
         elevation: 3,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     yearContainer: {
         width: '100%',
-        alignItems: 'center', 
+        alignItems: 'center', // Center cards horizontally
     },
     animatedView: {
         position: 'absolute',
