@@ -18,23 +18,23 @@ const educationData = [
 const Education = () => {
     const [isAnimatedViewVisible, setIsAnimatedViewVisible] = useState(false);
     const [animatedViewContent, setAnimatedViewContent] = useState(null);
-    const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current; 
 
     const handleCardPress = (item) => {
         const { component: Component } = item;
         setAnimatedViewContent({ Component, item });
         setIsAnimatedViewVisible(true);
-        Animated.timing(slideAnim, {
-            toValue: 0,
-            duration: 300,
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 600,
             useNativeDriver: true,
         }).start();
     };
 
     const closeAnimatedView = () => {
-        Animated.timing(slideAnim, {
-            toValue: Dimensions.get('window').height,
-            duration: 300,
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 400,
             useNativeDriver: true,
         }).start(() => {
             setIsAnimatedViewVisible(false);
@@ -62,7 +62,7 @@ const Education = () => {
                 </View>
 
                 {isAnimatedViewVisible && animatedViewContent && (
-                    <Animated.View style={[styles.animatedView, { transform: [{ translateY: slideAnim }] }]}>
+                    <Animated.View style={[styles.animatedView, { opacity: fadeAnim }]}>
                         <animatedViewContent.Component item={animatedViewContent.item} close={closeAnimatedView} />
                     </Animated.View>
                 )}
@@ -77,16 +77,11 @@ const styles = StyleSheet.create({
     },
     scrollViewContent: {
         flexGrow: 1,
+        alignItems: 'center', 
     },
     enlargedProfilePicture: {
         width: '90%',
         height: '90%',
-        borderRadius: 10,
-        overflow: 'hidden',
-    },
-    imageContainer: {
-        width: '100%',
-        height: '100%',
         borderRadius: 10,
         overflow: 'hidden',
     },
@@ -105,28 +100,29 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor: 'white',
-        width: '100%',
+        width: Dimensions.get('window').width * 0.9, 
         height: 120,
         borderRadius: 10,
         elevation: 3,
         shadowColor: '#000',
         shadowOpacity: 0.2,
         shadowOffset: { width: 0, height: 2 },
-        marginVertical: 5, // Adjusted margin
+        marginVertical: 10, // Adjusted margin
         paddingHorizontal: 10,
     },
     yearContainer: {
-        width: '90%',
-        marginLeft: 20,
+        width: '100%',
+        alignItems: 'center', 
     },
     animatedView: {
         position: 'absolute',
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: 'rgba(0,0,0,0)',
         justifyContent: 'center',
         alignItems: 'center',
     },
 });
 
 export default Education;
+
