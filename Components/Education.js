@@ -26,7 +26,7 @@ const Education = () => {
         setIsAnimatedViewVisible(true);
         Animated.timing(fadeAnim, {
             toValue: 1,
-            duration: 600,
+            duration: 400,
             useNativeDriver: true,
         }).start();
     };
