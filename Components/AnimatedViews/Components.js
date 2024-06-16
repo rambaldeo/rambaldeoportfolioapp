@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
     gradient: {
         width: '80%',
         maxHeight: '65%',
+        minHeight: '65%',
         alignSelf: 'center',
-        padding: 15,
+        padding: 10,
     },
     closeButton: {
         marginTop: 10,

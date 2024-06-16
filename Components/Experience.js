@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, ScrollView, Dimensions, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import Accordion from 'react-native-collapsible/Accordion';
+import Accordion from 'react-native-collapsible/Accordion'; 
 
 const SECTIONS = [
   {
@@ -10,7 +10,11 @@ const SECTIONS = [
   },
   {
     title: "Longo's",
-    content: 'Lorem ipsum...',
+    content: 'Part Time clerk since 2017',
+  },
+  {
+    title: 'Staples',
+    content: "tech Associate"
   },
   {
     title: "Tim Hortons",
