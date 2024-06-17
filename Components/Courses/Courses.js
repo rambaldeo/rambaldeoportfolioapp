@@ -87,7 +87,7 @@ export const FOURTHSEMESTER = [
         content: 'Information'
     },
     {
-        title: 'PRinciples of Software and Requirements Engineering',
+        title: 'Principles of Software and Requirements Engineering',
         content: 'Information'
     },
     {
