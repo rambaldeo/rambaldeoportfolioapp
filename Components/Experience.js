@@ -5,20 +5,28 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 const SECTIONS = [
   {
-    title: 'Deighton Associates',
+    company: 'Deighton Associates',
+    position: 'Jr Software Developer Intern',
+    duration: 'Summer 2023',
     content: 'Include information about my internship and my time there. Include the projects I worked on, the things I struggled with, what I thrived and how I included myself in the team',
   },
   {
-    title: "Longo's",
+    company: "Longo's",
+    position: 'Part-time Clerk',
+    duration: '2017 - Present',
     content: 'Part Time clerk since 2017',
   },
   {
-    title: 'Staples',
-    content: "tech Associate"
+    company: 'Staples',
+    position: 'Tech Associate',
+    duration: '2018 - 2019',
+    content: "Tech Associate",
   },
   {
-    title: "Tim Hortons",
-    content: "Tim hortons Canada"
+    company: "Tim Hortons",
+    position: 'Server',
+    duration: '2016 - 2017',
+    content: "Worked at Tim Hortons Canada",
   }
 ];
 
@@ -29,7 +37,8 @@ const Experience = () => {
     const _renderHeader = (section) => {
         return (
             <View style={ExperienceStyles.header}>
-                <Text style={ExperienceStyles.headerText}>{section.title}</Text>
+                <Text style={ExperienceStyles.headerText}>{section.company}</Text>
+                <Text style={ExperienceStyles.subHeaderText}>{section.position} | {section.duration}</Text>
             </View>
         );
     };
@@ -84,7 +93,7 @@ const ExperienceStyles = StyleSheet.create({
     },
     card: {
         backgroundColor: '#AEBAF8',
-        width: Dimensions.get('window').width * 0.8, // Adjusted width to fit accordion
+        width: Dimensions.get('window').width * 0.9, // Adjusted width to fit accordion
         borderRadius: 10,
         elevation: 3,
         shadowColor: '#000',
@@ -100,8 +109,13 @@ const ExperienceStyles = StyleSheet.create({
         alignItems: 'center',
     },
     headerText: {
-        fontSize: 25,
+        fontSize: 35,
         fontWeight: '500',
+    },
+    subHeaderText: {
+        fontSize: 16,
+        fontWeight: '400',
+        color: '#555',
     },
     content: {
         padding: 20,
