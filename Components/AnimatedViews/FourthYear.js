@@ -1,60 +1,100 @@
-import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Text, Image, StyleSheet, View } from 'react-native';
+import { AnimatedLayout, CloseButton } from './Components';
+import Accordion from 'react-native-collapsible/Accordion';
+import { SEVENTHSEMESTER, EIGHTSEMESTER } from '../Courses/Courses';
+
 
 const FourthYear = ({ item, close }) => {
+    const [activeSectionsFirst, setActiveSectionsFirst] = useState([]);
+    const [activeSectionsSecond, setActiveSectionsSecond] = useState([]);
+
+    const _renderHeader = (section) => {
+        return (
+            <View style={styles.header}>
+                <Text style={styles.headerText}>{section.title}</Text>
+            </View>
+        );
+    };
+
+    const _renderContent = (section) => {
+        return (
+            <View style={styles.content}>
+                <Text>{section.content}</Text>
+            </View>
+        );
+    };
+
+    const _updateSectionsFirst = (activeSections) => {
+        setActiveSectionsFirst(activeSections);
+    };
+
+    const _updateSectionsSecond = (activeSections) => {
+        setActiveSectionsSecond(activeSections);
+    };
+
     return (
-        <View style={styles.animatedViewContainer}>
-            <ScrollView contentContainerStyle={styles.animatedViewScrollContent}>
-                <Image source={item.source} style={styles.scrollImage} />
-                <Text style={styles.additionalText}>Details for FourthYear</Text>
-                <Image source={item.source} style={styles.scrollImage} />
-                <Image source={item.source} style={styles.scrollImage} />
-                <Image source={item.source} style={styles.scrollImage} />
-                <Image source={item.source} style={styles.scrollImage} />
-                <TouchableOpacity onPress={close} style={styles.closeButton}>
-                    <Text style={styles.closeButtonText}>Close</Text>
-                </TouchableOpacity>
-            </ScrollView>
+        <AnimatedLayout>
+        <Image source={item.source} style={styles.scrollImage} />
+        <Text style={styles.accordionTitle}>Third Semester Courses</Text>
+        <View style={styles.accordionStyle}>
+            <Accordion
+                sections={SEVENTHSEMESTER}
+                activeSections={activeSectionsFirst}
+                renderHeader={_renderHeader}
+                renderContent={_renderContent}
+                onChange={_updateSectionsFirst}
+            />
         </View>
+        <Text style={styles.accordionTitle}>Fourth Semester Courses</Text>
+        <View style={styles.accordionStyle}>
+            <Accordion
+                sections={EIGHTSEMESTER}
+                activeSections={activeSectionsSecond}
+                renderHeader={_renderHeader}
+                renderContent={_renderContent}
+                onChange={_updateSectionsSecond}
+            />
+        </View>
+        <CloseButton onPress={close} />
+    </AnimatedLayout>
     );
 };
 
 const styles = StyleSheet.create({
-    animatedViewContainer: {
-        width: '90%',
-        height: '70%',
-        backgroundColor: '#4ADEDE',
-        borderRadius: 10,
-        padding: 20,
-        marginBottom: 15,
-        marginTop: 15,  
-        marginBottom: 15,  
-    },
-    animatedViewScrollContent: {
-        paddingBottom: 20,
-        marginBottom: 15,
-    },
     scrollImage: {
         width: '100%',
         height: 200,
         marginBottom: 15,
     },
-    additionalText: {
-        marginBottom: 15,
+    accordionStyle: {
+        borderRadius: 10,
+        overflow: 'hidden',
+        margin: 10,
+    },
+    accordionTitle: {
+        fontSize: 20,
+        fontWeight: '600',
+        marginVertical: 5,
         textAlign: 'center',
-        fontSize: 16,
     },
-    closeButton: {
-        marginTop: 15,
-        backgroundColor: 'darkorange',
-        borderRadius: 5,
-        padding: 10,
+    header: {
+        backgroundColor: 'white',
+        padding: 20,
         alignItems: 'center',
-        width: '50%',
     },
-    closeButtonText: {
-        color: 'white',
-        fontSize: 16,
+    headerText: {
+        fontSize: 20,
+        fontWeight: '500',
+        textAlign: 'center'
+    },
+    content: {
+        padding: 10,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        marginBottom: 5,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
 });
 
