@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { Text, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { AnimatedLayout, CloseButton } from './Components';
 import Accordion from 'react-native-collapsible/Accordion';
-import { TESTSEVENTHSEMESTER, TESTEIGHTSEMESTER } from '../Courses/Courses';
+import { SEVENTHSEMESTER, EIGHTSEMESTER } from '../Courses/Courses';
 
-
-//Need to fix handling each array seperately
 const FourthYear = ({ item, close }) => {
-    const [activeSection, setActiveSection] = useState(null);
-    const [activeSectionSecond, setActiveSectionSecond] = useState(null);
-    const [courses, setCourses] = useState(TESTSEVENTHSEMESTER); // Initial courses
+    const [activeSectionTop, setActiveSectionTop] = useState(null);
+    const [activeSectionBottom, setActiveSectionBottom] = useState(null);
+    const [coursesTop, setCoursesTop] = useState(SEVENTHSEMESTER); 
+    const [coursesBottom, setCoursesBottom] = useState(EIGHTSEMESTER);
 
-    const _renderHeader = (section, index, isActive) => {
+    const _renderHeader = (section, index, isActive, updateSections) => {
         return (
-            <TouchableOpacity onPress={() => _updateSections(index)}>
+            <TouchableOpacity onPress={() => updateSections(index)}>
                 <View style={[styles.header, isActive && styles.activeHeader]}>
                     <Text style={styles.headerText}>{section.title}</Text>
                 </View>
@@ -21,7 +20,7 @@ const FourthYear = ({ item, close }) => {
         );
     };
 
-    const _renderContent = (section, index, isActive) => {
+    const _renderContent = (section, index, courses, updateSubSections) => {
         return (
             <View style={styles.content}>
                 <Text style={styles.contentText}><Text style={styles.bold}>Professor:</Text> {section.professor}</Text>
@@ -34,7 +33,7 @@ const FourthYear = ({ item, close }) => {
                     activeSections={courses[index].activeSubSections}
                     renderHeader={_renderSubHeader}
                     renderContent={_renderSubContent}
-                    onChange={(activeSubSections) => _onChangeSubSections(activeSubSections, index)}
+                    onChange={(activeSubSections) => updateSubSections(activeSubSections, index)}
                 />
             </View>
         );
@@ -56,39 +55,41 @@ const FourthYear = ({ item, close }) => {
         );
     };
 
-    const _updateSections = (index) => {
+    const updateSections = (index, activeSection, setActiveSection) => {
         setActiveSection(index === activeSection ? null : index);
-        setCourses(index === 0 ? TESTSEVENTHSEMESTER : TESTEIGHTSEMESTER); // Change courses based on selected semester
     };
-
-    const _updateSectionsSecond = (section) => {
-        setActiveSectionSecond(activeSectionSecond)
-    }
-
-    const _onChangeSubSections = (activeSubSections, index) => {
+    
+    const onChangeSubSections = (activeSubSections, index, courses, setCourses) => {
         const updatedCourses = [...courses];
         updatedCourses[index].activeSubSections = activeSubSections;
         setCourses(updatedCourses);
     };
+    
+
+    const handleUpdateSectionsTop = (index) => updateSections(index, activeSectionTop, setActiveSectionTop);
+    const handleUpdateSectionsBottom = (index) => updateSections(index, activeSectionBottom, setActiveSectionBottom);
+
+    const handleChangeSubSectionsTop = (activeSubSections, index) => onChangeSubSections(activeSubSections, index, coursesTop, setCoursesTop);
+    const handleChangeSubSectionsBottom = (activeSubSections, index) => onChangeSubSections(activeSubSections, index, coursesBottom, setCoursesBottom);
 
     return (
         <AnimatedLayout>
             <Image source={item.source} style={styles.scrollImage} />
             <Text style={styles.accordionTitle}>Seventh Semester Courses</Text>
             <Accordion
-                sections={TESTSEVENTHSEMESTER}
-                activeSections={activeSection === null ? [] : [activeSection]}
-                renderHeader={_renderHeader}
-                renderContent={_renderContent}
-                onChange={_updateSections}
+                sections={SEVENTHSEMESTER}
+                activeSections={activeSectionTop === null ? [] : [activeSectionTop]}
+                renderHeader={(section, index, isActive) => _renderHeader(section, index, isActive, handleUpdateSectionsTop)}
+                renderContent={(section, index) => _renderContent(section, index, coursesTop, handleChangeSubSectionsTop)}
+                onChange={handleUpdateSectionsTop}
             />
             <Text style={styles.accordionTitle}>Eighth Semester Courses</Text>
             <Accordion
-                sections={TESTEIGHTSEMESTER}
-                activeSections={activeSection === null ? [] : [activeSection]}
-                renderHeader={_renderHeader}
-                renderContent={_renderContent}
-                onChange={_updateSections}
+                sections={EIGHTSEMESTER}
+                activeSections={activeSectionBottom === null ? [] : [activeSectionBottom]}
+                renderHeader={(section, index, isActive) => _renderHeader(section, index, isActive, handleUpdateSectionsBottom)}
+                renderContent={(section, index) => _renderContent(section, index, coursesBottom, handleChangeSubSectionsBottom)}
+                onChange={handleUpdateSectionsBottom}
             />
             <CloseButton onPress={close} />
         </AnimatedLayout>
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     activeHeader: {
-        backgroundColor: '#F0F0F0', // Change to the active header color
+        backgroundColor: '#F0F0F0', 
     },
 });
 
