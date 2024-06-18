@@ -2,33 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, ScrollView, Dimensions, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import Accordion from 'react-native-collapsible/Accordion'; 
-
-const SECTIONS = [
-  {
-    company: 'Deighton Associates',
-    position: 'Jr Software Developer Intern',
-    duration: 'Summer 2023',
-    content: 'Include information about my internship and my time there. Include the projects I worked on, the things I struggled with, what I thrived and how I included myself in the team',
-  },
-  {
-    company: "Longo's",
-    position: 'Part-time Clerk',
-    duration: '2017 - Present',
-    content: 'Part Time clerk since 2017',
-  },
-  {
-    company: 'Staples',
-    position: 'Tech Associate',
-    duration: '2018 - 2019',
-    content: "Tech Associate",
-  },
-  {
-    company: "Tim Hortons",
-    position: 'Server',
-    duration: '2016 - 2017',
-    content: "Worked at Tim Hortons Canada",
-  }
-];
+import { LIST  } from "./Courses/Work";
 
 const Experience = () => {
     const screenWidth = Dimensions.get('window').width;
@@ -61,7 +35,7 @@ const Experience = () => {
                 <View style={ExperienceStyles.container}>
                     <View style={ExperienceStyles.card}>
                         <Accordion
-                            sections={SECTIONS}
+                            sections={LIST}
                             activeSections={activeSections}
                             renderHeader={_renderHeader}
                             renderContent={_renderContent}
