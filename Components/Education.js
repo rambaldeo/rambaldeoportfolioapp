@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { StyleSheet, TouchableOpacity, View, Image, ScrollView, Animated, Dimensions } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image, ScrollView, Animated, Dimensions, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import LifeAnimatedView from "./AnimatedViews/LifeAnimatedView";
 import FirstYearAnimatedView from "./AnimatedViews/FirstYearAnimatedView";
@@ -8,12 +8,38 @@ import ThirdYear from "./AnimatedViews/ThirdYear";
 import FourthYear from "./AnimatedViews/FourthYear";
 
 const educationData = [
-    { type: 'LifeOnCampus', source: require('../assets/IMG_0008.jpg'), component: LifeAnimatedView },
-    { type: 'FirstYear', source: require('../assets/IMG_0006.jpg'), component: FirstYearAnimatedView },
-    { type: 'SecondYear', source: require('../assets/IMG_0009.jpg'), component: SecondYear },
-    { type: 'ThirdYear', source: require('../assets/IMG_0010.jpg'), component: ThirdYear },
-    { type: 'FourthYear', source: require('../assets/IMG_0011.jpg'), component: FourthYear },
-];
+    { 
+      title: 'Life On Campus',
+      type: 'LifeOnCampus', 
+      source: require('../assets/IMG_0008.jpg'), 
+      component: LifeAnimatedView 
+    },
+    { 
+      title: 'First Year',
+      type: 'FirstYear', 
+      source: require('../assets/IMG_0006.jpg'), 
+      component: FirstYearAnimatedView 
+    },
+    { 
+      title: 'Second Year',
+      type: 'SecondYear', 
+      source: require('../assets/IMG_0009.jpg'), 
+      component: SecondYear 
+    },
+    { 
+      title: 'Third Year',
+      type: 'ThirdYear', 
+      source: require('../assets/IMG_0010.jpg'), 
+      component: ThirdYear 
+    },
+    { 
+      title: 'Fourth Year',
+      type: 'FourthYear', 
+      source: require('../assets/IMG_0011.jpg'), 
+      component: FourthYear 
+    },
+  ];
+  
 
 const Education = () => {
     const [isAnimatedViewVisible, setIsAnimatedViewVisible] = useState(false);
@@ -55,7 +81,7 @@ const Education = () => {
                     {educationData.map((item, index) => (
                         <TouchableOpacity key={index} onPress={() => handleCardPress(item)}>
                             <View style={styles.card}>
-                                <Image style={styles.image} resizeMode="contain" source={item.source} />
+                                <Text style={styles.title}>{item.title}</Text>
                             </View>
                         </TouchableOpacity>
                     ))}
@@ -109,6 +135,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         marginVertical: 10, // Adjusted margin
         paddingHorizontal: 10,
+        justifyContent: 'center'
     },
     yearContainer: {
         width: '100%',
@@ -122,6 +149,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    title: {
+        fontSize: 45,
+        fontWeight: '500',
+        textAlign: 'center',
+
+    }
 });
 
 export default Education;

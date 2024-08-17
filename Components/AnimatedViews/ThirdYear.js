@@ -1,63 +1,98 @@
 import React, { useState } from 'react';
-import { Text, Image, StyleSheet, View } from 'react-native';
+import { Text, Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { AnimatedLayout, CloseButton } from './Components';
 import Accordion from 'react-native-collapsible/Accordion';
 import { FIFTHSEMESTER, SIXTHSEMESTER } from '../Courses/Courses';
 
-
 const ThirdYear = ({ item, close }) => {
-    const [activeSectionsFirst, setActiveSectionsFirst] = useState([]);
-    const [activeSectionsSecond, setActiveSectionsSecond] = useState([]);
+    const [activeSectionTop, setActiveSectionTop] = useState(null);
+    const [activeSectionBottom, setActiveSectionBottom] = useState(null);
+    const [coursesTop, setCoursesTop] = useState(FIFTHSEMESTER); 
+    const [coursesBottom, setCoursesBottom] = useState(SIXTHSEMESTER);
 
-    const _renderHeader = (section) => {
+    const _renderHeader = (section, index, isActive, updateSections) => {
         return (
-            <View style={styles.header}>
-                <Text style={styles.headerText}>{section.title}</Text>
-            </View>
+            <TouchableOpacity onPress={() => updateSections(index)}>
+                <View style={[styles.header, isActive && styles.activeHeader]}>
+                    <Text style={styles.headerText}>{section.title}</Text>
+                </View>
+            </TouchableOpacity>
         );
     };
 
-    const _renderContent = (section) => {
+    const _renderContent = (section, index, courses, updateSubSections) => {
         return (
             <View style={styles.content}>
-                <Text>{section.content}</Text>
+                <Text style={styles.contentText}><Text style={styles.bold}>Professor:</Text> {section.professor}</Text>
+                <Text style={styles.contentText}><Text style={styles.bold}>Description: </Text>{section.content}</Text>
+                <Accordion
+                    sections={[
+                        { title: 'Project', content: section.project },
+                        { title: 'Assignment', content: section.assignment }
+                    ]}
+                    activeSections={courses[index].activeSubSections}
+                    renderHeader={_renderSubHeader}
+                    renderContent={_renderSubContent}
+                    onChange={(activeSubSections) => updateSubSections(activeSubSections, index)}
+                />
             </View>
         );
     };
 
-    const _updateSectionsFirst = (activeSections) => {
-        setActiveSectionsFirst(activeSections);
+    const _renderSubHeader = (subSection) => {
+        return (
+            <View style={styles.subHeader}>
+                <Text style={styles.subHeaderText}>{subSection.title}</Text>
+            </View>
+        );
     };
 
-    const _updateSectionsSecond = (activeSections) => {
-        setActiveSectionsSecond(activeSections);
+    const _renderSubContent = (subSection) => {
+        return (
+            <View style={styles.subContent}>
+                <Text>{subSection.content}</Text>
+            </View>
+        );
     };
+
+    const updateSections = (index, activeSection, setActiveSection) => {
+        setActiveSection(index === activeSection ? null : index);
+    };
+    
+    const onChangeSubSections = (activeSubSections, index, courses, setCourses) => {
+        const updatedCourses = [...courses];
+        updatedCourses[index].activeSubSections = activeSubSections;
+        setCourses(updatedCourses);
+    };
+    
+
+    const handleUpdateSectionsTop = (index) => updateSections(index, activeSectionTop, setActiveSectionTop);
+    const handleUpdateSectionsBottom = (index) => updateSections(index, activeSectionBottom, setActiveSectionBottom);
+
+    const handleChangeSubSectionsTop = (activeSubSections, index) => onChangeSubSections(activeSubSections, index, coursesTop, setCoursesTop);
+    const handleChangeSubSectionsBottom = (activeSubSections, index) => onChangeSubSections(activeSubSections, index, coursesBottom, setCoursesBottom);
 
     return (
         <AnimatedLayout>
-        <Image source={item.source} style={styles.scrollImage} />
-        <Text style={styles.accordionTitle}>Third Semester Courses</Text>
-        <View style={styles.accordionStyle}>
+            <Image source={item.source} style={styles.scrollImage} />
+            <Text style={styles.accordionTitle}>Fifth Semester Courses</Text>
             <Accordion
                 sections={FIFTHSEMESTER}
-                activeSections={activeSectionsFirst}
-                renderHeader={_renderHeader}
-                renderContent={_renderContent}
-                onChange={_updateSectionsFirst}
+                activeSections={activeSectionTop === null ? [] : [activeSectionTop]}
+                renderHeader={(section, index, isActive) => _renderHeader(section, index, isActive, handleUpdateSectionsTop)}
+                renderContent={(section, index) => _renderContent(section, index, coursesTop, handleChangeSubSectionsTop)}
+                onChange={handleUpdateSectionsTop}
             />
-        </View>
-        <Text style={styles.accordionTitle}>Fourth Semester Courses</Text>
-        <View style={styles.accordionStyle}>
+            <Text style={styles.accordionTitle}>Sixth Semester Courses</Text>
             <Accordion
                 sections={SIXTHSEMESTER}
-                activeSections={activeSectionsSecond}
-                renderHeader={_renderHeader}
-                renderContent={_renderContent}
-                onChange={_updateSectionsSecond}
+                activeSections={activeSectionBottom === null ? [] : [activeSectionBottom]}
+                renderHeader={(section, index, isActive) => _renderHeader(section, index, isActive, handleUpdateSectionsBottom)}
+                renderContent={(section, index) => _renderContent(section, index, coursesBottom, handleChangeSubSectionsBottom)}
+                onChange={handleUpdateSectionsBottom}
             />
-        </View>
-        <CloseButton onPress={close} />
-    </AnimatedLayout>
+            <CloseButton onPress={close} />
+        </AnimatedLayout>
     );
 };
 
@@ -66,11 +101,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 200,
         marginBottom: 15,
-    },
-    accordionStyle: {
-        borderRadius: 10,
-        overflow: 'hidden',
-        margin: 10,
     },
     accordionTitle: {
         fontSize: 20,
@@ -91,10 +121,30 @@ const styles = StyleSheet.create({
     content: {
         padding: 10,
         backgroundColor: '#fff',
-        alignItems: 'center',
         marginBottom: 5,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
+    },
+    contentText: {
+        marginBottom: 5,
+    },
+    bold: {
+        fontWeight: 'bold',
+    },
+    subHeader: {
+        backgroundColor: '#F0F0F0',
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#DDD',
+    },
+    subHeaderText: {
+        fontWeight: 'bold',
+    },
+    subContent: {
+        padding: 10,
+    },
+    activeHeader: {
+        backgroundColor: '#F0F0F0', 
     },
 });
 
