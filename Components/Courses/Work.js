@@ -1,5 +1,11 @@
 export const LIST = [
     {
+      company: 'LenBrook',
+      position: 'Technical Support Analyst',
+      duration: 'July 2024 -',
+      content: 'This is where I will add in the information',
+    },
+    {
       company: 'Deighton Associates',
       position: 'Jr Software Developer Intern',
       duration: 'Summer 2023',

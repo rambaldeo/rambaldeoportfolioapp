@@ -368,11 +368,19 @@ export const EIGHTSEMESTER = [
         activeSubSections: []
     },
     {
+        //Made the assignments into an array 
         title: 'Software & Computer Security',
         content: "This course offers an introduction to software security, covering topics such as managing software security risk, technology selection (open vs. closed source), software security principles, auditing, buffer overflows, access control, and authentication. It explores concepts like race conditions, randomness, cryptography application, trust management, and input validation. Additionally, it addresses the legal and ethical aspects of IT security and examines security measures at the operating system and network levels, including firewalls and intrusion detection. Specific learning objectives include understanding software and computer security concepts, techniques for addressing security risks, encryption algorithms, authorization, authentication, intrusion detection, malicious software, and buffer overflows.",
         professor: "Who taught the course",
         project: "Information about what the course project is",
-        assignment: "Any assignments I did",
+        assignment: [
+                {
+                    assignmentTitle: "Test1",
+                },
+                {
+                    assignmentTitle: "Test2",
+                }
+            ],
         activeSubSections: []
     },
 ];

@@ -21,6 +21,16 @@ const FourthYear = ({ item, close }) => {
     };
 
     const _renderContent = (section, index, courses, updateSubSections) => {
+        const renderAssignments = (assignment) => {
+            if (Array.isArray(assignment)) {
+                return assignment.map((assign, idx) => (
+                    <Text key={idx} style={styles.contentText}>{assign.assignmentTitle}</Text>
+                ));
+            } else {
+                return <Text style={styles.contentText}>{assignment}</Text>;
+            }
+        };
+
         return (
             <View style={styles.content}>
                 <Text style={styles.contentText}><Text style={styles.bold}>Professor:</Text> {section.professor}</Text>
@@ -28,7 +38,7 @@ const FourthYear = ({ item, close }) => {
                 <Accordion
                     sections={[
                         { title: 'Project', content: section.project },
-                        { title: 'Assignment', content: section.assignment }
+                        { title: 'Assignment', content: renderAssignments(section.assignment) }
                     ]}
                     activeSections={courses[index].activeSubSections}
                     renderHeader={_renderSubHeader}
@@ -64,7 +74,6 @@ const FourthYear = ({ item, close }) => {
         updatedCourses[index].activeSubSections = activeSubSections;
         setCourses(updatedCourses);
     };
-    
 
     const handleUpdateSectionsTop = (index) => updateSections(index, activeSectionTop, setActiveSectionTop);
     const handleUpdateSectionsBottom = (index) => updateSections(index, activeSectionBottom, setActiveSectionBottom);

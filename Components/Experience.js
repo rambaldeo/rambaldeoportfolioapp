@@ -20,7 +20,7 @@ const Experience = () => {
     const _renderContent = (section) => {
         return (
             <View style={ExperienceStyles.content}>
-                <Text>{section.content}</Text>
+                <Text><Text style={ExperienceStyles.bold}>Description: </Text> {section.content}</Text>
             </View>
         );
     };
@@ -94,6 +94,9 @@ const ExperienceStyles = StyleSheet.create({
     content: {
         padding: 20,
         backgroundColor: '#fff',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+    bold: {
+        fontWeight: 'bold',
     },
 });

@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 // Complete Animated View
 export const AnimatedLayout = ({ children }) => {
     return (
-        <LinearGradient colors={['#4ADEDE', '#2A4EDD', '#4ADEDE']} style={styles.gradient}>
+        <LinearGradient colors={['#AEBAF8', '#AEBAF8', '#AEBAF8']} style={styles.gradient}>
             <ScrollView>
                 {children}
             </ScrollView>
